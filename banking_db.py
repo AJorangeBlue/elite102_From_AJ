@@ -40,7 +40,86 @@ def bucket_Bank:
     INSERT INTO accounts (name, balance) VALUES (?,?) 
     ''', (name, initial_deposit))
 
+    connect.commit()
+    print(f"You deposited ${initial_deposit}.")
+    connect.close()
 
 
+  elif choices == "2":
+    connect = sqlite3.connect(DB_BANK)
+    cursor = connect.cursor()
+
+    print("\t=== Deposit Money ===")
+    print("Accounts:")
+
+    cursor.execute("SELECT * from accounts")
+    accounts = cursor.fetchall()
+    for acc in accounts:
+      print(f"ID: {acc[0]}, Name: {acc[1]}, Balance: ${acc[2]}")
+
+    account_id = int(input("Enter the ID you want to deposit: "))
+    depo_amount = float(input("How much do you want to deposit: $"))
+
+    cursor.execute('''
+    UPDATE accounts SET balance = balance + ? WHERE id = ?
+    ''', (depo_amount, account_id))
+
+    connect.commit()
+    print(f"You deposited ${depo_amount} into ID {account_id}")
+    print("= = = = = = = = = = =")
+    connect.close()
 
 
+  elif choices == "3":
+    connect = sqlite3.connect(DB_BANK)
+    cursor = connect.cursor()
+
+    print("\t=== Withdraw Money ===")
+    print("Accounts:")
+
+    cursor.execute("SELECT * from accounts")
+    accounts = cursor.fetchall()
+    for acc in accounts:
+      print(f"ID: {acc[0]}, Name: {acc[1]}, Balance: ${acc[2]}")
+
+    account_id = int(input("Enter the ID you want to withdraw: "))
+    with_amount = float(input("How much do you want to withdraw: $"))
+
+    # This is to check the sufficient amount
+    cursor.execute('''
+    SELECT balance FROM accounts WHERE id = ?
+    ''', (account_id))
+    balance = cursor.fetchall()[0]
+
+    if(with_amount > balance):
+      print("Insufficient funds. Try Again!")
+    else:
+      cursor.execute('''
+    UPDATE accounts SET balance = balance - ? WHERE id = ?
+    ''', (with_amount, account_id))
+
+    connect.commit()
+    print(f"You withdrew ${with_amount} from ID {account_id}")
+    print(f"New Balance: ${balance - with_amount}")
+    print("= = = = = = = = = = =")
+    connect.close()
+
+
+  elif choices == "4":
+    connect = sqlite3.connect(DB_BANK)
+    cursor = connect.cursor()
+
+    print("\t=== Displaying accounts ===")
+    print("Accounts:")
+
+    cursor.execute("SELECT * from accounts")
+    connect.commit()
+    connect.close()
+  elif choices = "5":
+    print("\nThank you for using Bucket Bank. Goodbye")
+    exit()
+  else:
+    print("Incorrect command. Try again!")
+
+
+bucket_bank()
