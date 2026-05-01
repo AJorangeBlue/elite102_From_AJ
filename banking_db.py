@@ -1,10 +1,10 @@
 import sqlite3
 
-BD_BANK = "banking.db"
+DB_BANK = "banking.db"
 
-def bucket_Bank:
+def bucket_Bank():
   connect = sqlite3.connect(DB_BANK)
-  cursor = connectcursor()
+  cursor = connect.cursor()
 
   #create Table
   cursor.execute('''
@@ -115,11 +115,15 @@ def bucket_Bank:
     cursor.execute("SELECT * from accounts")
     connect.commit()
     connect.close()
-  elif choices = "5":
+
+
+  elif choices == "5":
     print("\nThank you for using Bucket Bank. Goodbye")
     exit()
+
+
   else:
     print("Incorrect command. Try again!")
 
 
-bucket_bank()
+bucket_Bank()
