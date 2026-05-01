@@ -88,8 +88,8 @@ def bucket_Bank():
     # This is to check the sufficient amount
     cursor.execute('''
     SELECT balance FROM accounts WHERE id = ?
-    ''', (account_id))
-    balance = cursor.fetchall()[0]
+    ''', (account_id,))
+    balance = cursor.fetchone()[0]
 
     if(with_amount > balance):
       print("Insufficient funds. Try Again!")
@@ -113,6 +113,11 @@ def bucket_Bank():
     print("Accounts:")
 
     cursor.execute("SELECT * from accounts")
+    accounts = cursor.fetchall()
+
+    for acc in accounts:
+      print(f"ID: {acc[0]}, Name: {acc[1]}, Balance: ${acc[2]}")
+
     connect.commit()
     connect.close()
 
