@@ -1,31 +1,23 @@
-# Python SQLite Project
+# Aiden's Bucket Bank App
 
-This project is a simple Python application that interacts with an SQLite database. It serves as a demonstration of how to set up a Python project with SQLite and includes basic functionality for database operations.
+Welcome to the Bucket Bank App where users can create and access their bank account, deposit, withdraw,
+and open their account to view their balance.
 
-## Setup Instructions
-1. **Create a Codespace:**
-   - Navigate to the repository on GitHub.
-   - Click the **Code** button and select **Codespaces**.
-   - Click **Create codespace on main** to start a new Codespace.
-   - You can run the Codespace directly in your browser or open it in VS Code by connecting to the Codespace.
-
-2. **Install dependencies:**
-   Make sure you have Python and pip installed. Then run:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. **Initialize the database:**
+## How It Works
+1. **Run the application:**
    You can start the application by running:
    ```
-   python initialize_db.py
+   python banking_db.py
    ```
+   or just by going the the "banking_db.py" file and pressing the little play button.
 
-4. **Run the application:**
-   You can start the application by running:
-   ```
-   python main.py
-   ```
+2. **Pick a choice...**
+   You'll come across a UI that gives you five choices that sound exactly you'd expect:
+   Create an Account, Deposit Money, Withdraw Money, Check Balance and Exit Bank.
+
+   You can only use the numbers from 1-5; any number, word, or special characters will give you an error.
+   
+   
 
 ## Usage
 
